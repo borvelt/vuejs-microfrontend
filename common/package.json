@@ -6,7 +6,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "build:serve": "webpack && serve -l 3000 dist/"
   },
   "dependencies": {
     "lodash": "^4.17.15",
