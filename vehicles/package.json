@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build:serve": "vue-cli-service build --target lib --formats umd-min --name vehicles.[chunkhash] src/main.js && serve --cors -l 5000 dist/",
-    "build:test": "cross-env VUE_APP_BUILD_MODE=test NODE_ENV=production vue-cli-service build",
+    "dev": "vue-cli-service serve",
+    "serve": "serve --cors -l 8002 dist/",
+    "build": "vue-cli-service build --target lib --formats umd-min --name vehicles.[chunkhash] src/main.js",
+    "build:serve": "yarn build && yarn serve",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {},
@@ -20,6 +20,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",
     "lodash": "^4.17.15",
+    "serve": "^11.3.2",
     "vue": "^2.6.11",
     "vue-cli-plugin-externals": "~2.0.2",
     "vue-router": "^3.1.6",
