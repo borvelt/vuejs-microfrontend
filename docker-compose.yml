@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+    container:
+        container_name: mfe-container
+        image: mfe-container
+        build: container/
+        command: yarn serve
+        ports:
+            - 8000:8000
+    vendors:
+        container_name: mfe-vendors
+        image: mfe-vendors
+        build: vendors/
+        command: yarn serve
+        ports:
+            - 8001:8001
+    app_vehicles:
+        container_name: mfe-app-vehicles
+        image: mfe-app-vehicles
+        build: vehicles/
+        command: yarn serve
+        ports:
+            - 8002:8002
