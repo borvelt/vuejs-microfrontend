@@ -7,7 +7,8 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "build:serve": "webpack && serve -l 3000 dist/"
+    "serve": "serve -l 8001 dist/",
+    "build:serve": "yarn build && yarn serve"
   },
   "dependencies": {
     "lodash": "^4.17.15",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
+    "serve": "^11.3.2",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   }
