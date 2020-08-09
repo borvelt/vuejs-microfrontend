@@ -27,7 +27,7 @@ const mountFrame = (frameName = 'vehicles', containerID = 'app') => {
   })
 };
 
-if (process.env.VUE_APP_BUILD_MODE === 'test' || process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   mountFrame();
 }
 

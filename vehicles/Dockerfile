@@ -1,9 +1,7 @@
-
 FROM node:lts-alpine
-LABEL microfrontend="vendors"
+LABEL microfrontend="app/vehicles"
 COPY . /app
 WORKDIR /app
-ENV ENV=production
-EXPOSE 8001
+EXPOSE 8002
 RUN yarn --frozen-lockfile
 RUN yarn build
