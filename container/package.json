@@ -8,7 +8,11 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1",
+    "rendertron-middleware": "^0.1.5",
+    "serve-static": "^1.14.1"
+  },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",
     "@vue/cli-plugin-eslint": "~4.2.0",

@@ -1,24 +1,22 @@
 // this file is for experimental purposes and needs more considerations for production.
 
-const http = require('http')
-const fs = require('fs')
-const httpPort = 8000
+const fs = require('fs');
+const express = require('express');
+const serveStatic = require('serve-static')
+const rendertron = require('rendertron-middleware');
+const app = express();
+const httpPort = 8000;
 const distDirectory = `${__dirname}/dist`;
 const concat = (...args) => [...args].join('');
 
-http.createServer((req, res) => {
-    if (RegExp('^/js/', 'g').test(req.url)) {
-        fs.readFile(concat(distDirectory, req.url), (err, content) => {
-            if (err) {
-                res.writeHead(404).end(err.message);
-                return;
-            }
-            res.writeHead(200, {
-                'Content-Type': 'text/javascript; charset=utf-8'
-            }).end(content)
-        });
-        return;
-    }
+app.use(serveStatic(distDirectory, { index: 'index.html' }));
+
+app.use(rendertron.makeMiddleware({
+    proxyUrl: process.env.MFE_RENDERER,
+    userAgentPattern: new RegExp(['GoogleBot', 'W3C_Validator'].join('|'), 'i'),
+}));
+
+app.use((req, res) => {
     fs.readFile(concat(distDirectory, '/index.html'), 'utf-8', (err, content) => {
         if (err) {
             console.log(err.message);
@@ -26,9 +24,9 @@ http.createServer((req, res) => {
             return;
         }
         res.writeHead(200, {
-            'Content-Type': 'text/html; charset=utf-8'
-        }).end(content)
-    })
-}).listen(httpPort, () => {
-    console.log('Server listening on: http://localhost:%s', httpPort)
-})
+            'Content-Type': 'text/html; charset=utf-8',
+        }).end(content);
+    });
+});
+
+app.listen(httpPort);

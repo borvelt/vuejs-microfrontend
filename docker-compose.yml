@@ -1,23 +1,47 @@
 version: '3.8'
 services:
-    container:
-        container_name: mfe-container
-        image: mfe-container
-        build: container/
-        command: yarn serve
+    mfe_renderer:
+        container_name: mfe-renderer
+        image: mfe-renderer
+        command: npm start
         ports:
-            - 8000:8000
-    vendors:
+            - 8888
+    mfe_vendors:
         container_name: mfe-vendors
         image: mfe-vendors
         build: vendors/
         command: yarn serve
         ports:
             - 8001:8001
-    app_vehicles:
+        networks:
+            default:
+                aliases:
+                    - mfe-vendors.loc
+    mfe_app_vehicles:
         container_name: mfe-app-vehicles
         image: mfe-app-vehicles
         build: vehicles/
         command: yarn serve
         ports:
             - 8002:8002
+        networks:
+            default:
+                aliases:
+                    - mfe-app-vehicles.loc
+    mfe_container:
+        container_name: mfe-container
+        image: mfe-container
+        build: 
+            context: container/
+            args:
+                - VENDORS=http://mfe-vendors.loc:8001/vendors.js
+                - VUE_APP_VEHICLES_HOST=http://mfe-app-vehicles.loc:8002/
+        command: yarn serve
+        ports:
+            - 8000:8000
+        environment:
+            - MFE_RENDERER=http://mfe_renderer:8888/render
+        networks:
+            default:
+                aliases:
+                    - mfe-container.loc
