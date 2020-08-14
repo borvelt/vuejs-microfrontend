@@ -2,7 +2,7 @@ version: '3.8'
 services:
     mfe_renderer:
         container_name: mfe-renderer
-        image: mfe-renderer
+        image: borvelt/mfe-renderer:latest
         command: npm start
         ports:
             - 8888
