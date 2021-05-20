@@ -19,7 +19,7 @@
     "cross-env": "^7.0.2",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "serve": "^11.3.2",
     "vue": "^2.6.11",
     "vue-cli-plugin-externals": "~2.0.2",
