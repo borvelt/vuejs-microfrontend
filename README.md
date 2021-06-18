@@ -1,4 +1,4 @@
-# Micro Front-End (Vuejs)
+# Micro Front-End
 __This Repo has been provided for test and experimental purposes so needs more considerations for Production__
 
 ## Intro
