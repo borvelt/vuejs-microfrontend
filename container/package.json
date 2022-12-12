@@ -9,7 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "rendertron-middleware": "^0.1.5",
     "serve-static": "^1.14.1"
   },
